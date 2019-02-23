@@ -6,15 +6,15 @@
     which can be directly plugged into Express.
 */
 
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
-const port = 3000
 
-const helloRoutes = require('./routes/index');
+const notesRoutes = require('./routes/notes');
 const bodyParser = require('body-parser');
 
-app.use('/', helloRoutes);
+app.use('/', notesRoutes);
 
 // support json encoded bodies
 app.use(bodyParser.json());
@@ -25,4 +25,4 @@ app.get('*', function(req, res){
     return res.render('404')
 });
 
-app.listen(3000)
+app.listen(8000);
